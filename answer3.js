@@ -34,26 +34,30 @@ Using a loop, could store the values in an array that could stop immediately one
 
 'use strict';
 function getFibonacci(n) {
+   if(isFinite(n) == false){
+	   return 0; // n is Infinity type so cannot return value 
+   }else{
+	   var fib = [];       
+	   fib[0] = 0; fib[1] = 1; // set initial array keys
+	   
 
-   var fib = [];       
-   fib[0] = 0; fib[1] = 1; // set initial array keys
+	   for (var i=2; i<=n+1; i++) {
+			fib[i] = fib[i-1]+fib[i-2];
+			if (fib[i] > n) { // check if key > num 
+				return fib[i];
+			}
+	   }
+	   if (fib[i-1] < n) {   // check if key < num
+			return fib[i-1] + n;
+	   }
+	   if (fib[i] = n-1) {   // check if key = num
+		   return fib[i-1] + fib[i-2];
+	   } 
+	   if (fib[i-1] = 1) {    // check if num = 1
+		   return n + n;
+	   }
+   }
    
-
-   for (var i=2; i<=n+1; i++) {
-        fib[i] = fib[i-1]+fib[i-2];
-		if (fib[i] > n) { // check if key > num 
-			return fib[i];
-		}
-    }
-    if (fib[i-1] < n) {   // check if key < num
-        return fib[i-1] + n;
-    }
-    if (fib[i] = n-1) {   // check if key = num
-        return fib[i-1] + fib[i-2];
-    } 
-    if (fib[i-1] = 1) {    // check if num = 1
-        return n + n;
-    }
 }
 
 function nextFibonacci(arr){
@@ -66,6 +70,6 @@ function nextFibonacci(arr){
 		//console.log( "next fibonacci number = " + getFibonacci(num));
 	}
 }
-
 nextFibonacci([1,9,22]);
+
 
