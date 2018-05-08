@@ -28,36 +28,44 @@ Explanation: 2 is the next fibonacci number great than 1. The fibonacci number a
 and after 22 is 34.
 
 */
+/*
+Using a loop, could store the values in an array that could stop immediately one key after finding the selected number in the previous keys value.
+*/
 
 'use strict';
-function nextFibonacci(arr){
-	var resultArr = [];
-	for(var i = 0; i < arr.length; i++){
-		var num = arr[i]
-		var a = 1, b = 0, temp;
-		var initialval = num;
-		if( num == 0) return 1;
-		while (num >= 0){
-			temp = a;
-			a = a + b;
-			b = temp;
-			num--;
-			num = (b == initialval) ? 0 : num
-			if(b > initialval){
-				break;
-			}
-		}
+function getFibonacci(n) {
 
-		resultArr.push(b);
-	}
-    return resultArr
+   var fib = [];       
+   fib[0] = 0; fib[1] = 1; // set initial array keys
+   
+
+   for (var i=2; i<=n+1; i++) {
+        fib[i] = fib[i-1]+fib[i-2];
+		if (fib[i] > n) { // check if key > num 
+			return fib[i];
+		}
+    }
+    if (fib[i-1] < n) {   // check if key < num
+        return fib[i-1] + n;
+    }
+    if (fib[i] = n-1) {   // check if key = num
+        return fib[i-1] + fib[i-2];
+    } 
+    if (fib[i-1] = 1) {    // check if num = 1
+        return n + n;
+    }
 }
 
-console.log(nextFibonacci([1,9,22]))
+function nextFibonacci(arr){
+	var uniqueArray = arr.filter(function(item, pos) { // Remove duplicate values
+		return arr.indexOf(item) == pos;
+	});
+	for (let i = 0; i < uniqueArray.length; i++){
+		let num = uniqueArray[i];
+		console.log(getFibonacci(num));
+		//console.log( "next fibonacci number = " + getFibonacci(num));
+	}
+}
 
-/*
-	In this fibonacci function I have used while loop for getting the value of fibonacci.
-	Because while is very fast, so time needed is very less compare than recursive function.
-	While loop cannot use much of memory allocation, because one time only is added the variables. But in recursive function always set memory for variables.
-	
-*/
+nextFibonacci([1,9,22]);
+
